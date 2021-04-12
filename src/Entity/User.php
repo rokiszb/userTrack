@@ -37,6 +37,11 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\OneToOne(targetEntity=TaskList::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $taskList;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -116,5 +121,27 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getTaskList(): ?TaskList
+    {
+        return $this->taskList;
+    }
+
+    public function setTaskList(?TaskList $taskList): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($taskList === null && $this->taskList !== null) {
+            $this->taskList->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($taskList !== null && $taskList->getUser() !== $this) {
+            $taskList->setUser($this);
+        }
+
+        $this->taskList = $taskList;
+
+        return $this;
     }
 }

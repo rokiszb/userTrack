@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\TaskList;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\AppLoginAuthenticator;
@@ -31,9 +32,12 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            $taskList = new TaskList();
+            $taskList->setUser($user);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
+            $entityManager->persist($taskList);
             $entityManager->flush();
             // do anything else you need here, like send an email
 
