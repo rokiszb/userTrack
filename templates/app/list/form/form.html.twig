@@ -1,0 +1,25 @@
+{{ form_start(taskForm) }}
+<div class="row">
+    <div class="col-sm">
+        {{ form_label(taskForm.title) }}
+        {{ form_widget(taskForm.title) }}
+    </div>
+    <div class="col-sm">
+        {{ form_label(taskForm.date) }}
+        {{ form_widget(taskForm.date) }}
+    </div>
+    <div class="col-sm">
+        {{ form_label(taskForm.timeSpent) }}
+        {{ form_widget(taskForm.timeSpent) }}
+    </div>
+</div>
+<div class="form-row form-group">
+    {{ form_label(taskForm.comment) }}
+    {{ form_widget(taskForm.comment) }}
+</div>
+<div class="form-row form-group">
+    {{ form_row(taskForm.submit) }}
+</div>
+{{ form_end(taskForm) }}
+
+

@@ -28,7 +28,7 @@ class Task
     private $comment;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $date;
 
