@@ -28,7 +28,9 @@ class TaskType extends AbstractType
             ->add('timeSpent', NumberType::class, [
                 'constraints' => new Positive()
             ])
-            ->add('submit', SubmitType::class);
+            ->add('submit', SubmitType::class, [
+                'label' => 'Add to list'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

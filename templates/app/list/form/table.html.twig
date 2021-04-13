@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" id="my-data-table">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -20,5 +20,12 @@
             </tr>
             {% set count = count + 1 %}
         {% endfor %}
+            <tr>
+                <th scope="row">#</th>
+                <td>Total time spent</td>
+                <td></td>
+                <td></td>
+                <td>{{ totalTime }}</td>
+            </tr>
     </tbody>
 </table>
