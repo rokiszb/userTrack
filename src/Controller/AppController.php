@@ -56,7 +56,7 @@ class AppController extends AbstractController
             $this->entityManager->flush();
 
             $this->addFlash('success', 'Task created');
-            $this->redirectToRoute('list_view');
+            return $this->redirectToRoute('list_view');
         }
 
         return $this->render('app/list/index.html.twig', [

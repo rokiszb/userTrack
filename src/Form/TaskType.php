@@ -26,7 +26,8 @@ class TaskType extends AbstractType
                 'attr' => ['class' => 'js-datepicker'],
             ])
             ->add('timeSpent', NumberType::class, [
-                'constraints' => new Positive()
+                'constraints' => new Positive(),
+                'help' => 'Provide value in minutes',
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Add to list'

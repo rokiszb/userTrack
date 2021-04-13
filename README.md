@@ -31,16 +31,20 @@ correct for your system.
 Then, create the database and the schema!
 
 ```
-php bin/console doctrine:database:create
+php bin/console doctrine:schema:create
 ```
 
-**Start the built-in web server**
+**Start the web server**
 
 You can use Nginx or Apache, but the built-in web server works
 great:
 
 ```
-php bin/console server:run
+php -S localhost:8000 -t public
+```
+or if you have symfony CLI installed:
+```
+symfony serve
 ```
 
 Now check out the site at `http://localhost:8000`
