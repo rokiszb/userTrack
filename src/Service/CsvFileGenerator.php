@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use App\Entity\Task;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +34,7 @@ class CsvFileGenerator
         return $response;
     }
 
-    private function normalizeFields($fields)
+    private function normalizeFields($fields): array
     {
         if ($fields instanceof Task) {
             return [$fields->getId(), $fields->getTitle(), $fields->getComment(), $fields->getDate()->format('Y-m-d'), $fields->getTimeSpent()];

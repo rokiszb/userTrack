@@ -34,7 +34,7 @@
         {% set count = 1 %}
         {% for task in pagination %}
             <tr>
-                <th scope="row">{{ (pagination.params.page -1) * 10 + count }}</th>
+                <th scope="row">{{ ((pagination.params.page|default(1)) -1) * 10 + count }}</th>
                 <td>{{ task.title }}</td>
                 <td>{{ task.comment }}</td>
                 <td>{{ task.date|date('Y-m-d') }}</td>

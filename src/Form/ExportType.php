@@ -34,9 +34,9 @@ class ExportType extends AbstractType
                 'expanded' => true,
                 'multiple' => false,
                 'choices'  => [
-                    'PDF' => 'pdf',
+//                    'PDF' => 'pdf',
                     'CSV' => 'csv',
-                    'Excel' => 'excel',
+                    'Excel' => 'xlsx',
                 ],
             ])
             ->add('export', SubmitType::class, [
