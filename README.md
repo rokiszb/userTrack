@@ -1,7 +1,8 @@
 User Task list
 =================================
 
-This repository holds code to basic symfony task list. App stack 
+This repository holds code to basic symfony task list. There are currently two solutions. Datatables is on main branch
+and separate data-tables_solution branch, and another solution is on symfony-solution branch, check out both.
 ```
 Symfony 4.4
 jQuery 3.6
