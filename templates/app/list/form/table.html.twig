@@ -11,6 +11,7 @@
     </tbody>
 </table>
 <table class="table text-center" id="my-data-table">
+    <div>Total Items ({{ pagination.getTotalItemCount }})</div>
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -22,9 +23,9 @@
     </thead>
     <tbody>
         {% set count = 1 %}
-        {% for task in userList.tasks %}
+        {% for task in pagination %}
             <tr>
-                <th scope="row">{{ count }}</th>
+                <th scope="row">{{ (pagination.params.page -1) * 10 + count }}</th>
                 <td>{{ task.title }}</td>
                 <td>{{ task.comment }}</td>
                 <td>{{ task.date|date('Y-m-d') }}</td>
@@ -35,11 +36,14 @@
     </tbody>
     <tfoot>
     <tr>
-        <th  style="text-align:right">Total:</th>
         <th></th>
         <th></th>
         <th></th>
-        <th></th>
+        <th class="text-center">Total:</th>
+        <th>{{ totalTime }}</th>
     </tr>
     </tfoot>
 </table>
+<div class="list-navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>

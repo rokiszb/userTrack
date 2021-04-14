@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\TaskList;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @method TaskList|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +19,19 @@ class TaskListRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, TaskList::class);
+    }
+
+    public function getUserList(?UserInterface $user): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('list');
+        $qb->innerJoin('list.tasks', 'task');
+        $qb->andWhere('list.user = :user')
+            ->setParameter('user', $user)
+        ;
+
+        return $qb
+            ->orderBy('task.id', 'DESC')
+            ;
     }
 
     // /**
