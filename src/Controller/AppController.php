@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Task;
+use App\Form\ExportType;
 use App\Form\TaskType;
 use App\Repository\TaskListRepository;
 use App\Repository\TaskRepository;
@@ -62,8 +63,6 @@ class AppController extends AbstractController
             10
         );
 
-        dump($pagination);
-
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -75,11 +74,16 @@ class AppController extends AbstractController
             return $this->redirectToRoute('list_view');
         }
 
+        $exportForm = $this->createForm(ExportType::class, null, [
+            'action' => $this->generateUrl('export'),
+            'method' => 'POST'
+        ]);
+
         return $this->render('app/list/index.html.twig', [
             'taskForm' => $form->createView(),
-            'userList' => $list,
             'totalTime' => $totalTime,
             'pagination' => $pagination,
+            'exportForm' => $exportForm->createView(),
         ]);
     }
 }

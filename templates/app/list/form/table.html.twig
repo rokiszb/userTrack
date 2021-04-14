@@ -1,15 +1,24 @@
-<table>
-    <tbody>
-    <tr>
-        <td><label for="min">Minimum date:</label></td>
-        <td><input type="text" id="min" name="min"></td>
-    </tr>
-    <tr>
-        <td><label for="max">Maximum date:</label></td>
-        <td><input type="text" id="max" name="max"></td>
-    </tr>
-    </tbody>
-</table>
+
+{{ form_start(exportForm) }}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(exportForm) }}
+    </div>
+
+    <div class="row">
+        <div class="col-1">
+            {{ form_row(exportForm.type) }}
+        </div>
+        <div class="col-2">
+            <td>{{ form_label(exportForm.dateFrom) }}</td>
+            <td>{{ form_widget(exportForm.dateFrom) }}</td>
+        </div>
+        <div class="col-2">
+            <td>{{ form_label(exportForm.dateTo) }}</td>
+            <td>{{ form_widget(exportForm.dateTo) }}</td>
+        </div>
+    </div>
+{{ form_end(exportForm) }}
+
 <table class="table text-center" id="my-data-table">
     <div>Total Items ({{ pagination.getTotalItemCount }})</div>
     <thead>

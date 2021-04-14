@@ -6,10 +6,10 @@ $(document).ready(function() {
         format: 'yyyy-mm-dd'
     });
 
-    minDate = new DateTime($('#min'), {
+    minDate = new DateTime($('#export_dateFrom'), {
         format: 'YYYY-MM-DD'
     });
-    maxDate = new DateTime($('#max'), {
+    maxDate = new DateTime($('#export_dateTo'), {
         format: 'YYYY-MM-DD'
     });
 
