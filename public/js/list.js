@@ -5,6 +5,7 @@ $.fn.dataTable.ext.search.push(
     function( settings, data, dataIndex ) {
         var min = minDate.val();
         var max = maxDate.val();
+        console.log(max);
         var date = new Date( data[3] );
 
         if (
@@ -33,18 +34,13 @@ $(document).ready(function() {
     });
 
     var table = $('#my-data-table').DataTable({
-        "ordering": false,
-        "searching": false,
+        // "ordering": false,
+        // "searching": false,
         dom: 'Bfrtip',
         buttons: [
             'csv', 'excel', 'pdf'
         ],
-        // drawCallback: function () {
-        //     var api = this.api();
-        //     $( api.table().footer() ).html(
-        //         api.column( 4, {page:'current'} ).data().sum()
-        //     );
-        // }
+        "footerCallback": footerCallback,
     });
 
     $('#min, #max').on('change', function () {
@@ -52,3 +48,30 @@ $(document).ready(function() {
     });
 });
 
+var footerCallback = function footerCallback( row, data, start, end, display ) {
+    var api = this.api(), data;
+
+    // Remove the formatting to get integer data for summation
+    var intVal = function ( i ) {
+        return parseInt(i);
+    };
+
+    total = api
+        .column( 4 )
+        .data()
+        .reduce( function (a, b) {
+            return intVal(a) + intVal(b);
+        }, 0 );
+
+    pageTotal = api
+        .column( 4, { page: 'current'} )
+        .data()
+        .reduce( function (a, b) {
+            return intVal(a) + intVal(b);
+        }, 0 );
+
+    // Update footer
+    $( api.column( 4 ).footer() ).html(
+        `${pageTotal}  (  ${total} total)`
+    );
+}
